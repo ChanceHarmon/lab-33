@@ -1,26 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CounterContext } from './components/counter-context/counter-context';
+import Counter from './components/counter/counter';
+import Incrementer from './components/incrementer/incrementer';
+import Decrementer from './components/decrementer/decrementer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+  static contextType = CounterContext;
+  render() {
+    const { styles } = this.context;
+    return (
+      <div style={styles.container}>
+        <Decrementer />
+        <Counter />
+        <Incrementer />
+      </div>
+    );
+  }
 }
-
-export default App;
